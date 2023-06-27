@@ -1,0 +1,46 @@
+version: "3.1"
+
+services:
+  app-desafio-extra-ts:
+    image: node:18.16.1
+    container_name: desafio_extra
+    tty: true
+    stdin_open: true
+    # command: npm run dev
+    # Restarta a imagem caso algo a faça parar
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./:/app
+    # Lista de serviços do qual este serviço depende
+    depends_on:
+      db:
+        condition: service_healthy
+    
+    ports:
+      - 3001:3001
+    environment:
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_HOST: db
+      JWT_SECRET: secret
+      DB_PORT: 3306
+      DB_NAME: desafio_extra_ts
+      APP_PORT: 3001
+      APP_NAME: desafio-extra-ts
+
+  # Serviço que irá rodar o banco de dados
+  db:
+    container_name: db
+    image: mysql:8.0.32
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping"]
+      interval: 10s
+      timeout: 2s
+      retries: 10
+      start_period: 30s
