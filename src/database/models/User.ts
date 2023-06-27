@@ -1,9 +1,12 @@
-import { DataTypes, ModelDefined, Optional } from 'sequelize';
+import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 import sequelize from '.';
 import { User } from '../../types/User';
 import UrlModel from './Url';
 
-const UserModel: ModelDefined<User, Optional<User, 'id'>> = sequelize.define('User', { 
+export type UserModelCreationType =  ModelDefined<User, Optional<User, 'id' | 'status'>>
+export type UserModelType = Model<User, Optional<User, 'id' | 'status'>>
+
+const UserModel: UserModelCreationType= sequelize.define('User', { 
   email: DataTypes.STRING,
   username: DataTypes.STRING,
   password: DataTypes.STRING,
