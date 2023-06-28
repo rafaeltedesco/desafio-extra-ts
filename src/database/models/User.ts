@@ -20,7 +20,7 @@ const UserModel: UserModelCreationType= sequelize.define('User', {
 
 UserModel.hasMany(UrlModel, {
   as: 'urls',
-  foreignKey: 'id'
+  foreignKey: 'userId'
 });
 UrlModel.belongsTo(UserModel, {
   as: 'users',

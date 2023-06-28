@@ -5,6 +5,7 @@ import sequelize from '.';
 const UrlModel: ModelDefined<Url, Optional<Url, 'id'>> = sequelize.define('Url', {
   originalUrl: DataTypes.STRING,
   shortnedUrl: DataTypes.STRING,
+  userId: DataTypes.INTEGER
 }, {
   tableName: 'urls',
   timestamps: false,

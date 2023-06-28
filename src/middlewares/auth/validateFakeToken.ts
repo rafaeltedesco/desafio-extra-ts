@@ -8,7 +8,7 @@ Promise<Response | void> => {
     return res.status(401).json({ message: 'Must send token' });
   }
   const data = authorization.split('-');
-  const id = data[0];
+  const id = Number(data[1]);
   const email = data.slice(2).join('-');
   if (!email || !id) {
     return res.status(401).json({ message: 'Invalid Token' });

@@ -9,7 +9,8 @@ const findUserByEmail = async (email: string, lazy = true): Promise<UserModelTyp
   if (lazy) {
     return UserModel.findOne({ where: { email } });
   }
-  return UserModel.findOne({ where: { email }, include: { model: UrlModel, as: 'urls' } });
+  return UserModel.findOne({ where: { email }, 
+    include: { model: UrlModel, as: 'urls', attributes: { exclude: ['userId', 'id'] } } });
 };
   
 const createUser = async (payload: SignUpPayload): Promise<UserModelType> => {
