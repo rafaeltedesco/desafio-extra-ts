@@ -2,7 +2,7 @@ import { SignUpPayload } from '../../types/SignUpPayload';
 import { SignUpServiceResponse } from '../../types/SignUpServiceResponse';
 import { UserResponse } from '../../types/UserResponse';
 import buildActivationUrl from '../../utils/activationUrlBuilder';
-import userService from '../userService';
+import userService from '../userModelService';
 
 const signUp = async (payload: SignUpPayload) : 
 Promise<SignUpServiceResponse<UserResponse>> => {

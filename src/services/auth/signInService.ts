@@ -3,7 +3,7 @@ import { SignInPayload } from '../../types/SignInPayload';
 import { Token } from '../../types/Token';
 import { TokenPayload } from '../../types/TokenPayload';
 import fakeTokenGenerator from '../../utils/fakeTokenGenerator';
-import userService from '../userService';
+import userService from '../userModelService';
 
 const signIn = async (payload: SignInPayload):Promise<ServiceResponse<Token>> => {
   const user = await userService.findUserByEmail(payload.email);

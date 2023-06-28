@@ -1,6 +1,6 @@
 import { ActivationUrlPayload } from '../../types/ActivationUrlPayload';
 import { ServiceResponse } from '../../types/ServiceResponse';
-import userService from '../userService';
+import userService from '../userModelService';
 
 const activateUser = async (payload: ActivationUrlPayload) : Promise<ServiceResponse<null>> => {
   const response = await userService.activateUser(payload);
