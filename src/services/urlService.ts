@@ -11,7 +11,7 @@ Promise<ServiceResponse<ShortUrlResponseService>> => {
   if (!user) {
     return { status: 'ERROR', statusCode: 404, message: 'Invalid User' };
   }
-  console.log(payload, 'payload');
+  
   const shortnedUrl = urlShortnerGenerator.generateShortenedUrl(payload.userId);
   const newUrl = await UrlModel.create(
     { originalUrl: payload.url, shortnedUrl, userId: payload.userId,

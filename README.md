@@ -61,19 +61,45 @@ db:reset: Executa o arquivo restore_db.sh, que realiza as seguintes ações:
 ## Rotas
 A seguir estão as rotas disponíveis neste projeto:
 
-POST /signup: Realiza o cadastro de um usuário e gera uma URL de ativação. Por padrão, o usuário é cadastrado como inativo.
+> POST /signup: Realiza o cadastro de um usuário e gera uma URL de ativação. Por padrão, o usuário é cadastrado como inativo.
 
-POST /signin: Realiza o login enviando o e-mail e a senha do usuário. Se as informações estiverem corretas, o sistema retorna um token de autenticação.
+> POST /signin: Realiza o login enviando o e-mail e a senha do usuário. Se as informações estiverem corretas, o sistema retorna um token de autenticação.
 
-GET /activate/:userId/:activationCode: Ativa a conta do usuário com base no ID do usuário e no código de ativação fornecidos na URL.
+> GET /activate/:userId/:activationCode: Ativa a conta do usuário com base no ID do usuário e no código de ativação fornecidos na URL.
 
-GET /show-profile: Retorna o perfil do usuário, incluindo as URLs cadastradas, desde que seja fornecido um token válido.
+> GET /show-profile: Retorna o perfil do usuário, incluindo as URLs cadastradas, desde que seja fornecido um token válido.
 
-POST /short-url: Cria uma URL encurtada com base em uma URL original fornecida no corpo da requisição. É necessário enviar um token de autenticação válido para utilizar esta rota.
+> POST /short-url: Cria uma URL encurtada com base em uma URL original fornecida no corpo da requisição. É necessário enviar um token de autenticação válido para utilizar esta rota.
 
-GET /:urlCode: Recebe o código da URL encurtada e redireciona para a URL original correspondente.
+> GET /:urlCode: Recebe o código da URL encurtada e redireciona para a URL original correspondente.
 
 ## Configuração do Banco de Dados
 As informações de conexão com o banco de dados podem ser configuradas no arquivo config/database.ts.
 
-Certifique-se de ter um banco de dados MySQL disponível. O Docker Compose configura um banco de dados MySQL usando a imagem `mysql:
+Certifique-se de ter um banco de dados MySQL disponível. O Docker Compose configura um banco de dados MySQL usando a imagem `mysql`
+
+## Desafios:
+
+- Desafio 1 - Implementar o JWT:
+    - Gerar e Validar
+
+- Desafio 2 - Implementar o disparo de emails utilizando NodeMailer + MailTrap
+    - Remover link de ativação do retorno da API e disparar link gerado por email
+
+- Desafio 3 - Implementar rota de redirecionamento das urls encurtadas
+    - Controller: shortUrlController -> redirect
+
+- Desafio 4 - Criar testes de integração das 4 rotas
+
+- Desafio 5 - Refatorar
+    Aplicando Generics, Routers e o que mais achar necessário
+
+- Desafio Bônus - Melhorar Performance
+    Implementar sistema de filas para que email seja disparado em plano de fundo.
+
+    *Sugestão: Utilizar Bull.js*
+
+    - *Material de apoio*:
+      - Aula sobre Microsserviços + Performance
+        -  [Tribo A](https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/live-lectures/421eaf0a-9cc0-44e3-8654-e17987539242/recording/9cb8314d-22c6-43af-bff9-ed10d31edc33)
+        - [Tribo B](https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/live-lectures/e87d19c8-19af-4bb0-a3d8-a7b17ba46b6b/recording/9762440e-5865-4d9e-9030-979dca42bd61)

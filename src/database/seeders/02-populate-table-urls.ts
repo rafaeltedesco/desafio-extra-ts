@@ -6,12 +6,12 @@ export default {
     return queryInterface.bulkInsert('urls',  [
       {
         original_url: 'https://www.betrybe.com/formacao-desenvolvimento-web',
-        shortned_url: '1xb329a',
+        shortned_url: 'http://localhost:3001/1xb329a',
         user_id: 1,
       },
       {
         original_url: 'https://expressjs.com/en/advanced/best-practice-performance.html',
-        shortned_url: '2xc453b',
+        shortned_url: 'http://localhost:3001/2xc453b',
         user_id: 2,
       }
     ]);

@@ -1,5 +1,4 @@
 import { QueryInterface } from 'sequelize';
-import { User } from '../../types/User';
 
 export default {
   async up(queryInterface: QueryInterface) {
