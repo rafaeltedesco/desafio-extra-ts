@@ -28,7 +28,7 @@ const activateUser = async (payload: ActivationUrlPayload): Promise<ActivationRe
       activated: false, message: `User with id ${payload.id} already activated`, statusCode: 403,
     };
   }
-  console.log(user.dataValues.activationCode, payload.activationCode);
+  
   if (user.dataValues.activationCode !== payload.activationCode) {
     return { activated: false, message: 'Invalid Activation Code', statusCode: 403 };
   }
