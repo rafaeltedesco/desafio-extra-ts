@@ -1,4 +1,5 @@
 import UrlModel from '../database/models/Url';
+import { OriginalUrlResponse } from '../types/OriginalUrlResponse';
 import { ServiceResponse } from '../types/ServiceResponse';
 import { ShortUrlPayloadService, ShortUrlResponseService } from '../types/ShortUrlPayload';
 import urlShortnerGenerator from '../utils/urlShortnerGenerator';
@@ -19,10 +20,27 @@ Promise<ServiceResponse<ShortUrlResponseService>> => {
   return { 
     status: 'SUCCESS',
     message: 'Created', 
-    statusCode: 200, 
+    statusCode: 301, 
     data: { id: newUrl.dataValues.id, shortnedUrl, originalUrl: payload.url } };
+};
+
+const fetchShortnedUrl = async (shortnedUrl: string):
+Promise<ServiceResponse<OriginalUrlResponse>> => {
+  const url = await UrlModel.findOne({ where: { shortnedUrl } });
+  if (!url) {
+    return { status: 'ERROR', statusCode: 404, message: 'Page not found' };
+  }
+
+  return { 
+    status: 'SUCCESS', 
+    statusCode: 200,
+    message: 'Found!', 
+    data: {
+      originalUrl: url.dataValues.originalUrl,
+    } };
 };
 
 export default {
   shortUrl,
+  fetchShortnedUrl,
 };

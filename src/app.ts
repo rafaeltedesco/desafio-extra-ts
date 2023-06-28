@@ -21,5 +21,6 @@ app.post('/signin', validateSignIn, signInController.signIn);
 app.get('/activate/:userId/:activationCode', activateUserController.activateUser);
 app.get('/show-profile', validateFakeToken, showProfileController.showProfile);
 app.post('/short-url', validateFakeToken, validateUrlPayload, shortUrlController.shortUrl);
+app.get('/:urlCode', shortUrlController.redirect);
 
 export default app;

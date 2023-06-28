@@ -13,6 +13,18 @@ const shortUrl = async (req: Request, res: Response): Promise<Response> => {
   return res.status(response.statusCode).json({ message: response.message });
 };
 
+const redirect = async (req: Request, res: Response): Promise<Response | void> => {
+  const shortnedUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  const response = await urlService.fetchShortnedUrl(shortnedUrl);
+  if (response.status === 'SUCCESS') {
+    return res.status(response.statusCode).redirect(response.data.originalUrl);
+  }
+  return res.status(response.statusCode).json({
+    message: response.message,
+  });
+};
+
 export default {
   shortUrl,
+  redirect,
 };
