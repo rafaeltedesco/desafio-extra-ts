@@ -1,3 +1,4 @@
+import { Url } from './Url';
 import { UserStatus } from './UserStatus';
 
 export type User = {
@@ -6,5 +7,6 @@ export type User = {
   email: string,
   password: string,
   status: UserStatus,
-  activationCode: string
+  activationCode: string,
+  urls?: Url[]
 };

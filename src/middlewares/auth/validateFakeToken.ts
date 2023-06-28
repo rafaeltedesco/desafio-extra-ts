@@ -7,15 +7,11 @@ Promise<Response | void> => {
   if (!authorization) {
     return res.status(401).json({ message: 'Must send token' });
   }
-
   const data = authorization.split('-');
-
-  const [email, id] = data.slice(1);
-
+  const id = data[0];
+  const email = data.slice(2).join('-');
   if (!email || !id) {
-    return res.status(401).json({ 
-      message: 'Invalid Token',
-    });
+    return res.status(401).json({ message: 'Invalid Token' });
   }
 
   res.locals = {

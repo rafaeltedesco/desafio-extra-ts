@@ -11,14 +11,20 @@ const UserModel: UserModelCreationType= sequelize.define('User', {
   username: DataTypes.STRING,
   password: DataTypes.STRING,
   status: DataTypes.INTEGER,
-  activationCode: DataTypes.STRING
+  activationCode: DataTypes.STRING,
 }, {
   tableName: 'users',
   timestamps: false,
   underscored: true
 });
 
-UserModel.hasMany(UrlModel);
-UrlModel.belongsTo(UserModel);
+UserModel.hasMany(UrlModel, {
+  as: 'urls',
+  foreignKey: 'id'
+});
+UrlModel.belongsTo(UserModel, {
+  as: 'users',
+  foreignKey: 'id'
+});
 
 export default UserModel;

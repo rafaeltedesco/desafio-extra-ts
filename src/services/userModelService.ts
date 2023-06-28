@@ -1,12 +1,17 @@
+import UrlModel from '../database/models/Url';
 import UserModel, { UserModelType } from '../database/models/User';
 import { ActivationResponse } from '../types/ActivationResponse';
 import { ActivationUrlPayload } from '../types/ActivationUrlPayload';
 import { SignUpPayload } from '../types/SignUpPayload';
 import activationCodeGenerator from '../utils/activationCodeGenerator';
 
-const findUserByEmail = async (email: string): Promise<UserModelType | null> => 
-  UserModel.findOne({ where: { email } });
-
+const findUserByEmail = async (email: string, lazy = true): Promise<UserModelType | null> => {
+  if (lazy) {
+    return UserModel.findOne({ where: { email } });
+  }
+  return UserModel.findOne({ where: { email }, include: { model: UrlModel, as: 'urls' } });
+};
+  
 const createUser = async (payload: SignUpPayload): Promise<UserModelType> => {
   const newUser = UserModel.build({
     ...payload,
