@@ -1,10 +1,11 @@
-import { ServiceResponse } from '../../types/ServiceResponse';
 import { SignUpPayload } from '../../types/SignUpPayload';
+import { SignUpServiceResponse } from '../../types/SignUpServiceResponse';
 import { UserResponse } from '../../types/UserResponse';
+import buildActivationUrl from '../../utils/activationUrlBuilder';
 import userService from '../userService';
 
 const signUp = async (payload: SignUpPayload) : 
-Promise<ServiceResponse<UserResponse>> => {
+Promise<SignUpServiceResponse<UserResponse>> => {
   const user = await userService.findUserByEmail(payload.email);
   if (user) {
     return { status: 'ERROR', statusCode: 409, message: 'User already exists with this email' };
@@ -17,7 +18,8 @@ Promise<ServiceResponse<UserResponse>> => {
   return { 
     status: 'SUCCESS',
     statusCode: 201, 
-    data: { id, username, email, activationCode },
+    data: { id, username, email },
+    activationUrl: buildActivationUrl({ id, activationCode }),
     message: 'User was registered! Check your email to activate your account',
   };
 };

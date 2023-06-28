@@ -28,6 +28,7 @@ services:
       DB_NAME: desafio_extra_ts
       APP_PORT: 3001
       APP_NAME: desafio-extra-ts
+      HOST: 'http://localhost'
 
   # Serviço que irá rodar o banco de dados
   db:
