@@ -47,16 +47,16 @@ docker-compose logs -f app-desafio-extra-ts
 
 A seguir estão os scripts disponíveis no arquivo package.json:
 
-start: Executa a aplicação em modo de produção.
-lint: Executa o linting no código-fonte usando o ESLint.
-dev: Executa a aplicação em modo de desenvolvimento com reinício automático.
-build: Compila o código TypeScript para JavaScript.
-db:reset: Executa o arquivo restore_db.sh, que realiza as seguintes ações:
-  Compila o código TypeScript para JavaScript.
-  Dropa o banco de dados existente.
-  Cria um novo banco de dados.
-  Executa as migrações do Sequelize.
-  Popula o banco de dados com os dados iniciais.
+- start: Executa a aplicação em modo de produção.
+- lint: Executa o linting no código-fonte usando o ESLint.
+- dev: Executa a aplicação em modo de desenvolvimento com reinício automático.
+- build: Compila o código TypeScript para JavaScript.
+- db:reset: Executa o arquivo restore_db.sh, que realiza as seguintes ações:
+  - Compila o código TypeScript para JavaScript.
+  - Dropa o banco de dados existente.
+  - Cria um novo banco de dados.
+  - Executa as migrações do Sequelize.
+  - Popula o banco de dados com os dados iniciais.
 
 ## Rotas
 A seguir estão as rotas disponíveis neste projeto:
@@ -98,8 +98,3 @@ Certifique-se de ter um banco de dados MySQL disponível. O Docker Compose confi
     Implementar sistema de filas para que email seja disparado em plano de fundo.
 
     *Sugestão: Utilizar Bull.js*
-
-    - *Material de apoio*:
-      - Aula sobre Microsserviços + Performance
-        -  [Tribo A](https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/live-lectures/421eaf0a-9cc0-44e3-8654-e17987539242/recording/9cb8314d-22c6-43af-bff9-ed10d31edc33)
-        - [Tribo B](https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/live-lectures/e87d19c8-19af-4bb0-a3d8-a7b17ba46b6b/recording/9762440e-5865-4d9e-9030-979dca42bd61)
