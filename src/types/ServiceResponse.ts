@@ -1,5 +1,5 @@
-type ErrorStatus = 400 | 401 | 403 | 404 | 409 | 500;
-type SuccessStatus = 200 | 201 | 204;
+export type ErrorStatus = 400 | 401 | 403 | 404 | 409 | 500;
+export type SuccessStatus = 200 | 201 | 204;
 
 export type ErrorResponse = {
   status: 'ERROR'
